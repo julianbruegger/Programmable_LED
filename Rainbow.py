@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # NeoPixel library strandtest example
-# Author: Julian Brügger (julian.bruegger@ict-bz.ch)
+# Author: Julian Bruegger (julian.bruegger@ict-bz.ch)
 #
 # Direct port of the Arduino NeoPixel library strandtest example.  Showcases
 # various animations on a strip of NeoPixels.
@@ -10,7 +10,7 @@ from neopixel import *
 import argparse
 
 # LED strip configuration:
-LED_COUNT      = 16      # Number of LED pixels.
+LED_COUNT      = 30      # Number of LED pixels.
 LED_PIN        = 18      # GPIO pin connected to the pixels (18 uses PWM!).
 LED_FREQ_HZ    = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA        = 10      # DMA channel to use for generating signal (try 10)
@@ -47,3 +47,7 @@ if __name__ == '__main__':
 while True:
       print ('Rainbow animations.')
              rainbow(strip)
+
+except KeyboardInterrupt:
+        if args.clear:
+            colorWipe(strip, Color(0,0,0), 10)
