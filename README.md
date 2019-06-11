@@ -68,20 +68,20 @@ sudo reboot
 Nun müssen einige Dinge installiert werden. 
 
 Die Bibliothek mit Informationen Herunterladen.
-```
+```sh
 git clone https://github.com/jgarff/rpi_ws281x
 ```
 In diesem Verzeichnis sind nun einerseits einige C Dateien enthalten, welche einfach kompiliert werden können. Der Beispielcode dafür ist gut verständlich. Damit wir diese in Python verwenden können, müssen wir sie kompilieren:
-```
+```sh
 cd rpi_ws281x/
 sudo scons
 ```
 Da das ganze mit Python laufen soll, wechseln wir in den Python Ordner.
-```
+```sh
 cd python
 ```
 Hier führen wir nun noch die Installation aus:
-```
+```sh
 sudo python setup.py build
 sudo python setup.py install
 ```
@@ -92,11 +92,11 @@ Im Example-Ordner sind einige Beispieldateien, womit die LED Streifen getestet w
 Wir verwenden zu Testzwecken die ``` strandtest.py``` Datei. In dieser werden verscheidene Farbmodis gezeigt.
 
 Die Datei ``` strandtest.py``` muss noch angepasst werden. 
-```
-Bei LED_COUNT muss die Anzahl der LED's am streifen angegeben werden. 
+
+Bei ```LED_COUNT``` muss die Anzahl der LED's am streifen angegeben werden. 
 
 Ansonsten muss nichts angepasst werden. 
-```
+
 ```python
 # LED strip configuration:
 LED_COUNT      = 16      # Number of LED pixels.
@@ -114,3 +114,14 @@ LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 sudo PYTHONPATH=".:build/lib.linux-armv7l-2.7" python examples/strandtest.py
 ````
 # Eigene LED-Abfolge
+```python
+import board
+import neopixel
+
+pixels = neopixel.NeoPixel(board.D18, 30)
+
+pixels[0] = (255, 0, 0)
+pixels[2] = (0, 255, 0)
+pixels[5] = (0, 0, 255)
+
+```
