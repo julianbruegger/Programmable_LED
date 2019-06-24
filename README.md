@@ -111,17 +111,102 @@ LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
 Über diesen Befehl kann das Programm gestartet werden. 
 ```sh
-sudo PYTHONPATH=".:build/lib.linux-armv7l-2.7" python examples/strandtest.py
+sudo python examples/strandtest.py
 ````
-# Eigene LED-Abfolge
+
+# Eigene Abfolge
+Nachfolgend wird erklärt was befolgt werden muss um eine eigene Abfolge zu Programmieren.
+
+## Einzelne LED ansprechen
+Als erstes müssen alle Module importiert werden.
+
 ```python
+import time
+import board
+import neopixel
+```
+
+Danach muss die Anzahl der LED's definiert werden. Dies kann wie folgt gelöst werden. In diesem falle sind es 144 LED's.
+```python
+# The number of NeoPixels
+num_pixels = 144
+```
+Zuletzt muss noch der GPIO Pin definiert werden. 
+
+```py
+# Pin the LED_Strip is connected
+pixel_pin = board.D18
+```
+Zuletzt wird noch der Befehl ``` pixel``` definiert.
+
+```py
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels)
+```
+
+Optional kann noch über ```brightness  = 255``` die Helligkeit angepasst werden.
+
+Die Zahl kann zwischen 0 und 255 angepasst werden. 
+
+Nun kann ein Pixel angesprochen werden. Dies ist wie folgt möglich:
+```py
+pixels[0] = (255, 0, 0) # Pixel1 Red
+```
+Somit wird der Pixel 1 Rot. 
+
+## Beispiel
+```py
+# Simple test for NeoPixels on Raspberry Pi
+import time
 import board
 import neopixel
 
-pixels = neopixel.NeoPixel(board.D18, 30)
+# The number of NeoPixels
+num_pixels = 144
+# Pin the LED_Strip is connected
+pixel_pin = board.D18
 
-pixels[0] = (255, 0, 0)
-pixels[2] = (0, 255, 0)
-pixels[5] = (0, 0, 255)
+pixels = neopixel.NeoPixel(pixel_pin, num_pixels)
 
+# Code
+brightness  = 255
+pixels[0] = (255, 0, 0) #Red
+time.sleep(2)
+pixels[2] = (0, 255, 0) #Green
+
+time.sleep(5)
+	
+pixels[2] = (0, 0, 0)
+time.sleep(1)
+pixels[0] = (0, 0, 0)
+
+time.sleep(5)
 ```
+
+In diesem Beispiel wird einfach der Pixle 1&3 ein und dann wieder ausgeschaltet.
+
+Über ```time.sleep(1)``` wird eine Sekunde gewartet bis der LED angeschaltet wird. 
+
+### Loop
+Falls der ganze Script unendlich laufen soll, kann das Ganze über ein ```While True``` gelöst werden.
+
+Das muss dann wie folgt gelöst werden:
+
+```py
+while True:
+
+	# Code
+	brightness  = 255
+
+	pixels[0] = (255, 0, 0) # Red
+	time.sleep(2)
+	pixels[2] = (0, 255, 0) # Green
+
+	time.sleep(5)
+
+	pixels[2] = (0, 0, 0)
+	time.sleep(1)
+	pixels[0] = (0, 0, 0)
+
+	time.sleep(5)
+```
+
