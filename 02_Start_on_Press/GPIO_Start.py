@@ -38,12 +38,32 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels)
 input_state1 = GPIO.input(17)
 
 #If GPIO(17) is shorted to Ground
+
+
 if input_state1 != last_state1:
     if (player and not input_state1):
         pixels.fill((229, 0, 124))
-        time.sleep(7)
-        pixels.fill((0, 0, 0))
-        time.sleep(5)
+        time.sleep(4)
+        pixels[0] = (0, 255,0)
+        pixels[1] = (0, 254, 1)
+        pixels[2] = (0, 253, 2)
+        pixels[3] = (0, 252, 3)
+        pixels[4] = (0, 251, 4)
+        pixels[5] = (0, 255, 0)
+        pixels[6] = (0, 255, 0)
+        pixels[7] = (0, 255, 0)
+        pixels[8] = (0, 255, 0)
+        pixels[9] = (0, 255,0)
+        pixels[10] = (0, 254, 1)
+        pixels[11] = (0, 253, 2)
+        pixels[12] = (0, 252, 3)
+        pixels[13] = (0, 251, 4)
+        pixels[14] = (0, 255, 0)
+        pixels[15] = (0, 255, 0)
+        pixels[16] = (0, 255, 0)
+        pixels[17] = (0, 255, 0)
+
+        time.sleep(10)
         pixels.fill((0, 0, 0))
         player = True
         
@@ -51,7 +71,7 @@ if input_state1 != last_state1:
     elif not input_state1:
         pixels.fill((229, 0, 124))
         time.sleep(7)
-        pixels.fill((0, 0, 0))
+        pixels.fill((0, 157, 122))
         time.sleep(5)
         pixels.fill((0, 0, 0))
         player = True
