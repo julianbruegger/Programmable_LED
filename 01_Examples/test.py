@@ -11,9 +11,6 @@ pixel_pin = board.D18
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels)
 
 
-# Set Brightness
-brightness  = 100
-
 while True:
 
 

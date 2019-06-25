@@ -16,14 +16,14 @@ import argparse
 
 
 # LED pixels configuration:
-num_pixels     = 144      # Number of LED pixels.
-pixel_pin      = board.D21      # GPIO pin connected to the pixels (18 uses PWM!).
+num_pixels     = 60      # Number of LED pixels.
+pixel_pin      = board.D12      # GPIO pin connected to the pixels (18 uses PWM!).
 ORDER          = neopixel.GRB
 
 
 # Config_GPIO_Play
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Set states for GPIO_Play
 last_state1 = True
@@ -35,9 +35,9 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels)
     
 
 #Read states of inputs
-input_state1 = GPIO.input(17)
+input_state1 = GPIO.input(18)
 
-#If GPIO(17) is shorted to Ground
+#If GPIO(18) is shorted to Ground
 
 
 if input_state1 != last_state1:
