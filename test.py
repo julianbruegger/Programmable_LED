@@ -26,6 +26,7 @@ def colorWipe(strip, color, wait_ms=50):
         strip.show()
         time.sleep(1)
         strip2.setPixelColor(i, color)
+        strip2.show()
         time.sleep(wait_ms/1000.0)
 
         # Main program logic follows:
